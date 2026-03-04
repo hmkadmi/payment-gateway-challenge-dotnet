@@ -4,6 +4,7 @@ using System.Text.Json;
 using PaymentGateway.Api.Client;
 using PaymentGateway.Api.Repositoys;
 using PaymentGateway.Api.Services;
+using PaymentGateway.Api.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,9 @@ builder.Services.AddHttpClient<AcquiringBankClient>(client =>
     client.BaseAddress = new Uri("http://localhost:8080");
 });
 
+//LOG 
+builder.Services.AddHttpLogging(_ => {});
+
 // Domain service
 builder.Services.AddScoped<PaymentsService>();
 
@@ -48,6 +52,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
+app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseHttpLogging(); // logs request/response basics (sans body)
 
 app.MapControllers();
 app.Run();

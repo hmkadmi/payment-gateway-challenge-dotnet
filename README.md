@@ -192,3 +192,47 @@ dotnet run --project src/PaymentGateway.Api
 Run tests:
 
 dotnet test
+
+json example for test 
+Cas Authorized
+
+{
+  "cardNumber": "2222405343248877",
+  "expiryMonth": 4,
+  "expiryYear": 2030,
+  "currency": "GBP",
+  "amount": 100,
+  "cvv": "123"
+}
+
+Cas Declined
+
+{
+  "cardNumber": "2222405343248878",
+  "expiryMonth": 4,
+  "expiryYear": 2030,
+  "currency": "GBP",
+  "amount": 100,
+  "cvv": "123"
+}
+
+Cas Bank Down
+{
+  "cardNumber": "2222405343248870",
+  "expiryMonth": 4,
+  "expiryYear": 2030,
+  "currency": "GBP",
+  "amount": 100,
+  "cvv": "123"
+}
+
+Cas Rejected
+
+{
+  "cardNumber": "2222405343248870",
+  "expiryMonth": 4,
+  "expiryYear": 2020,
+  "currency": "GBP",
+  "amount": 100,
+  "cvv": "123"
+}
